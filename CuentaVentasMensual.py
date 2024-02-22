@@ -26,6 +26,8 @@ while True:
         while numeroCliente != 0:
             montoVenta = float(input("Ingrese el monto de la venta\n"))
             mesVenta = int(input("Ingrese el mes de la venta\n"))
+            while mesVenta > 12:
+                mesVenta = int(input("Mes incorrecto, vuelva a ingresar\n"))
             numeroCliente = int(input("Ingrese numero de cliente\n"))
             ventasMensuales[mesVenta] += montoVenta
 
@@ -34,5 +36,7 @@ while True:
             print(ventasMensuales[x])
     elif opcion == 3:
         exit()
+    else:
+        print("Opcion no valida")
 
-#print(ventasMensuales)
+
