@@ -32,8 +32,10 @@ while True:
             ventasMensuales[mesVenta] += montoVenta
 
     elif opcion == 2:
+        contador = 1
         for x in ventasMensuales:
-            print(ventasMensuales[x])
+            print(f'Mes{contador}: {ventasMensuales[x]}')
+            contador += 1
     elif opcion == 3:
         exit()
     else:
