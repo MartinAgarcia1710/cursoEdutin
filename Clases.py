@@ -1,25 +1,30 @@
+
 class Persona:
     def __init__(self, nombre, edad, dni, genero):
         #Con __ hago que se produzca encapsulamiento, de esta forma simulo atributos privados
         #y que no puedan ser accedidos desde el interior ya que por defecto, los atributos
         #en python son publicos.
-        self.__nombre = nombre
+        self.nombre = nombre
         self.edad = edad
         self.dni = dni
         self.genero = genero
 
     def saludar(self):
-        return print("Hola mi nombre es: ", self.__nombre)
+        return print("Hola mi nombre es: ", self.nombre)
     def setNombre(self, valor):
-        self.__nombre = valor
+        self.nombre = valor
     def getNombre(self):
-        return self.__nombre
-
+        return self.nombre
+#----------------------------------------------------------------------------------- CLASE EMPLEADO
 class Empleado(Persona):
-    def __init__(self, nombre, edad, dni, genero, sueldo):
+    def __init__(self , nombre, edad, dni, genero, sueldo):
         super().__init__(nombre, edad, dni, genero)
         self.sueldo = sueldo
-
+    #metodo sobre escrito de la clase padre
+    def saludar(self):
+        super().saludar()
+        print("y mi sueldo es $", self.sueldo)
+#-------------------------------------------------------------------------------------- CLASE VEHICULOS
 class Vehiculos():
     def __init__(self, marca, modelo):
         self.marca = marca
@@ -27,7 +32,7 @@ class Vehiculos():
         self.enMarcha = False
         self.acelera = False
         self.frena = False
-
+#-------------------------------------------------------------------------------------CLASE AUTO
 class Auto():
     def __init__(self):
         self.largo = 0
@@ -57,11 +62,43 @@ class Auto():
             return  True
         else:
             return False
+    def presentacion(self):
+        print("Soy un auto")
+
+
+'''
+    Cuando hay herencia multiple y existen constructores den las clases padres, la clase hija
+    va a priorizar el constructor de la primera que se ponga en los (). En este caso la prioridad
+    la tendrá la clase Vehiculos, pues figura antes que Auto
+'''
+class AutoFamiliar(Vehiculos, Auto):
+    def presentacion(self):
+        print("Soy un auto familiar")
+
+#-------------------------------------------------------------------------------------- POLIMORFISMO
+'''
+    
+'''
+def presentacionVehiculos(vehiculo):
+    vehiculo.presentacion()
 
 
 
-coche = Auto()
-coche.arrancar()
-roberto = Persona("Roberto",40, 30123456, "Masculino")
-print(coche.estado())
-print(roberto.edad, " años")
+#coche = Auto()
+#coche.arrancar()
+roberto = Empleado("Roberto",40, 30123456, "Masculino", 50000)
+#print(coche.estado())
+#print(roberto.edad, " años")
+roberto.saludar()
+'''
+    En programas complejos y con muchas clases, herencias y herencias multiples puede ser muy util
+    la funcion isinstance(), la cual devuelve True o False dependiendo de si el objeto pertenece o no
+    a la clase que enviamos como parametro. 
+'''
+print(isinstance(roberto, Vehiculos))
+print(isinstance(roberto, Persona))
+vehi1 = Auto()
+vehi2 = AutoFamiliar("fd", "dfs")
+
+presentacionVehiculos(vehi1)
+presentacionVehiculos(vehi2)
