@@ -11,12 +11,12 @@ root.title("Catálogo de celulares")
 #raiz.iconbitmap("RUTA DEL ARCHIVO")
 
 #geometry establece el tamaño de la ventana
-root.geometry("800x600")
+#root.geometry("800x600")
 
 #Cambia el color del fondo
 #root.config(bg = "Blue")
 
-miFrame = Frame()
+miFrame = Frame(root , width=800, height=600)
 
 #Empaqueta el frame, en este caso los parametros enviados hacen que al expandir la ventana el frame tambien lo haga
 #miFrame.pack(fill = BOTH, expand = "True")
@@ -48,24 +48,43 @@ miFrame.config(width = 800, height = 600)
 cuadroMarca = Entry(miFrame)
 cuadroMarca.grid(row = 0, column = 1, padx = PADX, pady = PADY)
 cuadroMarca.config(justify = "center")
+
 cuadroModelo = Entry(miFrame)
 cuadroModelo.grid(row = 1, column = 1, padx = PADX, pady = PADY)
 cuadroModelo.config(justify = "center")
+
 cuadroColor = Entry(miFrame)
 cuadroColor.grid(row = 2, column = 1, padx = PADX, pady = PADY)
 cuadroColor.config(justify = "center")
-cuadroPassword = Entry(miFrame)
-cuadroPassword.grid(row = 3, column = 1)
-cuadroPassword.config(justify = "center", show = "^")
+
+cuadroRed = Entry(miFrame)
+cuadroRed.grid(row = 3, column = 1)
+cuadroRed.config(justify = "center")
 
 
 labelMarca = Label(miFrame, text = "Marca:")
 labelMarca.grid(row = 0, column = 0, padx = PADX, pady = PADY)
+
 labelModelo = Label(miFrame, text = "Modelo:")
 labelModelo.grid(row = 1, column = 0, padx = PADX, pady = PADY)
+
 labelColor = Label(miFrame, text = "Color:")
 labelColor.grid(row = 2, column = 0, padx = PADX, pady = PADY)
-labelPassword = Label(miFrame, text = "Password:")
-labelPassword.grid(row = 3, column = 0, padx = PADX, pady = PADY)
+
+labelRed = Label(miFrame, text = "Red:")
+labelRed.grid(row = 3, column = 0, padx = PADX, pady = PADY)
+
+labelComentarios = Label(miFrame, text = "Comentarios:")
+labelComentarios.grid(row = 4, column = 0, padx = PADX)
+textoComentarios = Text(miFrame, height = 15, width = 15)
+textoComentarios.grid(row = 4, column = 1, padx = PADX, pady = PADY)
+scrollComentarios = Scrollbar(miFrame, command = textoComentarios.yview)
+scrollComentarios.grid(row = 4, column = 2, sticky = "nsew")
+textoComentarios.config(yscrollcommand = scrollComentarios.set)
+
+botonAceptar = Button(root, text = "Aceptar")
+botonAceptar.pack()
+botonCancelar = Button(root, text = "Cancelar")
+botonCancelar.pack()
 #Mainloop siempre tiene que quedar al final
 root.mainloop()
